@@ -85,3 +85,61 @@ sim_vehicle.py -v ArduCopter -f gazebo-iris \
 | `No JSON sensor message` | Start Gazebo before SITL |
 | `No Heartbeat` | Use UDP port 14550 not TCP 5760 |
 # ardupilot-gazebo-setup1
+### Step 7 — Install Mission Planner on Ubuntu
+
+**Install Mono:**
+```bash
+sudo apt-get install mono-complete -y
+```
+
+**Download Mission Planner:**
+```bash
+cd ~
+wget https://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-latest.zip
+unzip MissionPlanner-latest.zip -d MissionPlanner
+cd MissionPlanner
+```
+
+**Run Mission Planner:**
+```bash
+mono MissionPlanner.exe
+```
+
+---
+
+### Step 8 — Connect Mission Planner to SITL
+
+1. Make sure SITL is running with UDP output
+2. In Mission Planner top right:
+   - Select **UDP**
+   - Port: **14550**
+   - Click **CONNECT**
+
+---
+
+### Step 9 — Arm and Takeoff
+
+**From Mission Planner:**
+- Click **Actions** tab
+- Click **Arm/Disarm**
+- Right click on map → **Fly To Here** → set altitude **50** → OK
+
+**Or from SITL terminal:**
+```bash
+mode guided
+arm throttle
+takeoff 50
+```
+
+---
+
+### Step 10 — Basic Flight Commands
+
+| Command | Action |
+|---------|--------|
+| `mode guided` | Switch to Guided mode |
+| `mode stabilize` | Switch to Stabilize mode |
+| `mode rtl` | Return to Launch |
+| `mode land` | Land immediately |
+| `arm throttle` | Arm motors |
+| `takeoff 50` | Takeoff to 50 meters |
